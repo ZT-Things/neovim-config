@@ -46,6 +46,17 @@ autocmd({"BufWritePre"}, {
     command = [[%s/\s\+$//e]],
 })
 
+autocmd('BufEnter', {
+    group = ThePrimeagenGroup,
+    callback = function()
+        if vim.bo.filetype == "zig" then
+            vim.cmd.colorscheme("tokyonight-night")
+        else
+            vim.cmd.colorscheme("rose-pine-moon")
+        end
+    end
+})
+
 autocmd('LspAttach', {
     group = ThePrimeagenGroup,
     callback = function(e)
@@ -66,3 +77,11 @@ autocmd('LspAttach', {
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+
+vim.api.nvim_create_user_command("TogglePrivateMode", function()
+    PRIVATE_MODE = not PRIVATE_MODE
+    vim.notify("Private Mode: " .. (PRIVATE_MODE and "ON" or "OFF"))
+    vim.cmd("Cord update")
+    vim.cmd("doautocmd CursorHold")
+    vim.cmd("redraw!")
+end, {})
