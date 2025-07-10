@@ -2,6 +2,7 @@ require("zt.remap")
 require("zt.lazy_init")
 require("zt.set")
 
+--
 -- DO.not
 -- DO NOT INCLUDE THIS
 
@@ -82,6 +83,4 @@ vim.api.nvim_create_user_command("TogglePrivateMode", function()
     PRIVATE_MODE = not PRIVATE_MODE
     vim.notify("Private Mode: " .. (PRIVATE_MODE and "ON" or "OFF"))
     vim.cmd("Cord update")
-    vim.cmd("doautocmd CursorHold")
-    vim.cmd("redraw!")
 end, {})

@@ -1,4 +1,4 @@
-PRIVATE_MODE = false
+PRIVATE_MODE = true
 return {
     "vyfor/cord.nvim",
     config = function()
