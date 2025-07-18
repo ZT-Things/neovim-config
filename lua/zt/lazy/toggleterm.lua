@@ -23,7 +23,7 @@ return {
             direction = "float",
         })
 
-        function _lazygit_toggle()
+        local function _lazygit_toggle()
             lazygit:toggle()
         end
 

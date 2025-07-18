@@ -84,3 +84,11 @@ vim.api.nvim_create_user_command("TogglePrivateMode", function()
     vim.notify("Private Mode: " .. (PRIVATE_MODE and "ON" or "OFF"))
     vim.cmd("Cord update")
 end, {})
+
+-- Disable auto comment continuation
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+        vim.opt_local.formatoptions:remove("o")
+    end,
+})

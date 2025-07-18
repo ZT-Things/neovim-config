@@ -39,3 +39,5 @@ vim.keymap.set("n", "<A-Left>",  ":vertical resize -2<CR>", { desc = "Decrease w
 vim.keymap.set("n", "<A-Right>", ":vertical resize +2<CR>", { desc = "Increase width" })
 vim.keymap.set("n", "<A-Up>",    ":resize -2<CR>",           { desc = "Decrease height" })
 vim.keymap.set("n", "<A-Down>",  ":resize +2<CR>",           { desc = "Increase height" })
+
+vim.keymap.set("n", "<leader>l", ":set list!<CR>", {noremap = true, silent=true})

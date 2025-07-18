@@ -21,3 +21,7 @@ vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
 
 vim.o.termguicolors = true
+
+-- vim.opt.list = true
+-- vim.opt.listchars = { space = "·" }
+-- vim.cmd([[highlight SpecialKey guifg=#888888 ctermfg=224]])
