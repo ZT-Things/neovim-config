@@ -41,3 +41,10 @@ vim.keymap.set("n", "<A-Up>",    ":resize -2<CR>",           { desc = "Decrease 
 vim.keymap.set("n", "<A-Down>",  ":resize +2<CR>",           { desc = "Increase height" })
 
 vim.keymap.set("n", "<leader>l", ":set list!<CR>", {noremap = true, silent=true})
+
+vim.keymap.set("n", "<leader>rp", function()
+    local file = vim.fn.expand("%")
+    local cmd = "python3 " .. file
+    require("toggleterm").exec(cmd, 1)  -- Sends to terminal 1
+end, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>re", ":e %<CR>", { noremap = true, silent=true })

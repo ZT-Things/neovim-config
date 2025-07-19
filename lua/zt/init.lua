@@ -82,7 +82,7 @@ vim.g.netrw_winsize = 25
 vim.api.nvim_create_user_command("TogglePrivateMode", function()
     PRIVATE_MODE = not PRIVATE_MODE
     vim.notify("Private Mode: " .. (PRIVATE_MODE and "ON" or "OFF"))
-    vim.cmd("Cord update")
+    vim.cmd("e %")
 end, {})
 
 -- Disable auto comment continuation

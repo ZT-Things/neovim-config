@@ -28,13 +28,11 @@ return {
         end
 
         vim.keymap.set("n", "<leader>gg", _lazygit_toggle, { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>rp", function()
-            local file = vim.fn.expand("%")
-            local cmd = "python3 " .. file
-            require("toggleterm").exec(cmd, 1)  -- Sends to terminal 1
-        end, { noremap = true, silent = true })
         vim.keymap.set("n", "<C-t>", "<cmd>ToggleTerm<CR>", { noremap = true, silent = true })
         vim.keymap.set("t", "<C-t>", "<C-\\><C-n><cmd>ToggleTerm<CR>", { noremap = true, silent = true })
+        vim.cmd [[
+          autocmd TermOpen * startinsert
+        ]]
     end
 }
 
