@@ -48,3 +48,7 @@ vim.keymap.set("n", "<leader>rp", function()
     require("toggleterm").exec(cmd, 1)  -- Sends to terminal 1
 end, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>re", ":e %<CR>", { noremap = true, silent=true })
+
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+vim.keymap.set("i", "<C-v>", '<C-r>+', { noremap = true, silent = true })
