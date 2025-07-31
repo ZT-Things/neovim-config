@@ -25,3 +25,28 @@ vim.o.termguicolors = true
 -- vim.opt.list = true
 -- vim.opt.listchars = { space = "·" }
 -- vim.cmd([[highlight SpecialKey guifg=#888888 ctermfg=224]])
+
+vim.api.nvim_create_autocmd("FileType", {
+      pattern = {
+        "html",
+        "css",
+        "scss",
+        "less",
+        "javascript",
+        "typescript",
+        "json",
+        "yaml",
+        "markdown",
+        "vue",
+        "svelte",
+        "ruby",
+        "handlebars",
+        "ejs",
+      },
+      callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.tabstop = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.expandtab = true
+      end,
+})
