@@ -93,3 +93,5 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.formatoptions:remove("o")
     end,
 })
+
+vim.o.signcolumn = 'yes'

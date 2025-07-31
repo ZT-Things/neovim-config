@@ -41,6 +41,7 @@ return {
         vim.keymap.set("t", "<C-t>", "<C-\\><C-n><cmd>ToggleTerm<CR>", { noremap = true, silent = true })
         vim.keymap.set("t", "<A-c>", "<C-\\><C-N>")
         vim.keymap.set({"n", "v", "t"}, "<C-g>", [[<C-\><C-n>$Fll]], { noremap = true, silent = true })
+        vim.keymap.set("n", "<C-g>", "<C-\\><C-n>$Fll")
 
         vim.keymap.set({"t"}, "<C-y>", 'mzg_v$Fll"+y`za', { noremap = true, silent = true }) -- greatest term keymap
         vim.keymap.set({"n", "v"}, "<C-y>", '<C-\\><C-n>mzg_v$Fll"+y`z', { noremap = true, silent = true }) -- greatest term keymap
