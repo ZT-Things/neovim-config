@@ -47,6 +47,9 @@ vim.keymap.set("n", "<leader>rp", function()
     local cmd = "python3 " .. file
     require("toggleterm").exec(cmd, 1)  -- Sends to terminal 1
 end, { noremap = true, silent = true })
+vim.remap.set("n", "<leader> rc", function()
+    require("toggleterm").exec("cargo run")
+end, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>re", ":e %<CR>", { noremap = true, silent=true })
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
