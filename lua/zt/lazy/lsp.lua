@@ -44,8 +44,7 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-                "typescript-language-server",
-                "gopls",
+                "ts_ls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
