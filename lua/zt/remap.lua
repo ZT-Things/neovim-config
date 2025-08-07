@@ -56,3 +56,6 @@ vim.keymap.set("n", "<leader>re", ":e %<CR>", { noremap = true, silent=true })
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 vim.keymap.set("i", "<C-v>", '<C-r>+', { noremap = true, silent = true })
+
+vim.keymap.set("n", "<A-a>", "<C-a>", { noremap = true,  silent = true })
+vim.keymap.set("n", "<A-x>", "<C-x>", { noremap = true,  silent = true })
