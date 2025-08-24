@@ -59,3 +59,10 @@ vim.keymap.set("i", "<C-v>", '<C-r>+', { noremap = true, silent = true })
 
 vim.keymap.set("n", "<A-a>", "<C-a>", { noremap = true,  silent = true })
 vim.keymap.set("n", "<A-x>", "<C-x>", { noremap = true,  silent = true })
+
+vim.keymap.set("i", "<C-o>", "<C-c>o", { noremap = true, silent = true })
+
+vim.keymap.set("i", "<C-f>", "<C-o>", { noremap = true, silent = true })
+
+vim.keymap.set("i", "<C-j>", "<C-o>j", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-k>", "<C-o>k", { noremap = true, silent = true })
