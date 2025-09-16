@@ -47,16 +47,16 @@ autocmd({"BufWritePre"}, {
     command = [[%s/\s\+$//e]],
 })
 
-autocmd('BufEnter', {
-    group = ThePrimeagenGroup,
-    callback = function()
-        if vim.bo.filetype == "zig" then
-            vim.cmd.colorscheme("tokyonight-night")
-        else
-            vim.cmd.colorscheme("rose-pine-moon")
-        end
-    end
-})
+-- autocmd('BufEnter', {
+--     group = ThePrimeagenGroup,
+--     callback = function()
+--         if vim.bo.filetype == "zig" then
+--             vim.cmd.colorscheme("tokyonight-night")
+--         else
+--             vim.cmd.colorscheme("rose-pine-moon")
+--         end
+--     end
+-- })
 
 autocmd('LspAttach', {
     group = ThePrimeagenGroup,
@@ -95,3 +95,5 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.o.signcolumn = 'yes'
+
+vim.api.nvim_set_hl(0, "IblIndent", { fg = "#3b3b3b", nocombine = true })
