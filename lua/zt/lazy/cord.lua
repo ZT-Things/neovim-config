@@ -1,10 +1,11 @@
-PRIVATE_MODE = true
+local private_mode = true
+
 return {
     "vyfor/cord.nvim",
     config = function()
         require("cord").setup({
             enabled = true,
-            log_level = vim.log.levels.OFF,
+            log_level = vim.log.levels.DEBUG,
 
             editor = {
                 client = 'neovim',
@@ -15,8 +16,9 @@ return {
             display = {
                 theme = 'default',
                 flavor = 'dark',
+                view = 'full',
                 swap_fields = false,
-                swap_icons = true,
+                swap_icons = false,
             },
 
             timestamp = {
@@ -27,7 +29,7 @@ return {
             },
 
             idle = {
-                enabled = false,
+                enabled = true,
                 timeout = 300000,
                 show_status = true,
                 ignore_focus = true,
@@ -43,76 +45,101 @@ return {
                 default = nil,
 
                 workspace = function(opts)
-                    return PRIVATE_MODE and "In Private Workspace" or ("In " .. (opts.workspace or ""))
+                    return private_mode and "In Private Workspace"
+                        or ("In " .. (opts.workspace or "Unknown Workspace"))
                 end,
 
                 viewing = function(opts)
-                    return PRIVATE_MODE and "Viewing <redacted>" or ("Viewing " .. (opts.filename or ""))
+                    return private_mode and "Viewing <redacted>"
+                        or ("Viewing " .. (opts.filename or "Unknown File"))
                 end,
 
                 editing = function(opts)
-                    return PRIVATE_MODE and "Editing <redacted>" or ("Editing " .. (opts.filename or ""))
+                    return private_mode and "Editing <redacted>"
+                        or ("Editing " .. (opts.filename or "Unknown File"))
                 end,
 
                 file_browser = function(opts)
-                    return PRIVATE_MODE and "Browsing <redacted>" or ("Browsing files in " .. (opts.name or ""))
+                    return private_mode and "Browsing <redacted>"
+                        or ("Browsing files in " .. (opts.name or "Unknown"))
                 end,
 
                 plugin_manager = function(opts)
-                    return PRIVATE_MODE and "Managing Plugins" or ("Managing plugins in " .. (opts.name or ""))
+                    return private_mode and "Managing Plugins"
+                        or ("Managing plugins in " .. (opts.name or "Unknown"))
                 end,
 
                 lsp = function(opts)
-                    return PRIVATE_MODE and "Configuring LSP" or ("Configuring LSP in " .. (opts.name or ""))
+                    return private_mode and "Configuring LSP"
+                        or ("Configuring LSP in " .. (opts.name or "Unknown"))
                 end,
 
                 docs = function(opts)
-                    return PRIVATE_MODE and "Reading Docs" or ("Reading " .. (opts.name or ""))
+                    return private_mode and "Reading Docs"
+                        or ("Reading " .. (opts.name or "Unknown Docs"))
                 end,
 
                 vcs = function(opts)
-                    return PRIVATE_MODE and "Committing Changes" or ("Committing changes in " .. (opts.name or ""))
+                    return private_mode and "Committing Changes"
+                        or ("Committing changes in " .. (opts.name or "Unknown Repo"))
                 end,
 
                 notes = function(opts)
-                    return PRIVATE_MODE and "Taking Notes" or ("Taking notes in " .. (opts.name or ""))
+                    return private_mode and "Taking Notes"
+                        or ("Taking notes in " .. (opts.name or "Unknown Notebook"))
                 end,
 
                 debug = function(opts)
-                    return PRIVATE_MODE and "Debugging" or ("Debugging in " .. (opts.name or ""))
+                    return private_mode and "Debugging"
+                        or ("Debugging in " .. (opts.name or "Unknown"))
                 end,
 
                 test = function(opts)
-                    return PRIVATE_MODE and "Testing Code" or ("Testing in " .. (opts.name or ""))
+                    return private_mode and "Testing Code"
+                        or ("Testing in " .. (opts.name or "Unknown"))
                 end,
 
                 diagnostics = function(opts)
-                    return PRIVATE_MODE and "Fixing Problems" or ("Fixing problems in " .. (opts.name or ""))
+                    return private_mode and "Fixing Problems"
+                        or ("Fixing problems in " .. (opts.name or "Unknown"))
                 end,
 
                 games = function(opts)
-                    return PRIVATE_MODE and "Playing" or ("Playing " .. (opts.name or ""))
+                    return private_mode and "Playing"
+                        or ("Playing " .. (opts.name or "a Game"))
                 end,
 
                 terminal = function(opts)
-                    return PRIVATE_MODE and "Running Commands" or ("Running commands in " .. (opts.name or ""))
+                    return private_mode and "Running Commands"
+                        or ("Running commands in " .. (opts.name or "Terminal"))
                 end,
 
-                dashboard = 'Home',
+                dashboard = "Home",
             },
 
             buttons = nil,
+            -- Example:
+            -- buttons = {
+            --     {
+            --         label = 'View Repository',
+            --         url = function(opts) return opts.repo_url end,
+            --     },
+            -- },
+
             assets = nil,
             variables = nil,
+
             hooks = {
                 ready = nil,
                 shutdown = nil,
-                pre_activity =  nil,
+                pre_activity = nil,
                 post_activity = nil,
                 idle_enter = nil,
                 idle_leave = nil,
                 workspace_change = nil,
+                buf_enter = nil,
             },
+
             plugins = nil,
 
             advanced = {
@@ -121,19 +148,23 @@ return {
                     cursor_update = 'on_hold',
                     match_in_mappings = true,
                 },
+
                 server = {
                     update = 'fetch',
                     pipe_path = nil,
                     executable_path = nil,
                     timeout = 300000,
                 },
+
                 discord = {
+                    pipe_paths = { "/run/user/1000/discord-ipc-1" },
                     reconnect = {
                         enabled = false,
                         interval = 5000,
                         initial = true,
                     },
                 },
+
                 workspace = {
                     root_markers = { '.git', '.hg', '.svn' },
                     limit_to_cwd = false,
