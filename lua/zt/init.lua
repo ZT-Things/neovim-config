@@ -80,10 +80,18 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
+-- Private on by default
+PRIVATE_MODE = true
+
 vim.api.nvim_create_user_command("TogglePrivateMode", function()
     PRIVATE_MODE = not PRIVATE_MODE
     vim.notify("Private Mode: " .. (PRIVATE_MODE and "ON" or "OFF"))
-    vim.cmd("silent! e %")
+
+    -- Force presence.nvim to update immediately
+    local status, presence = pcall(require, "presence")
+    if status and presence then
+        presence:update()
+    end
 end, {})
 
 -- Disable auto comment continuation
