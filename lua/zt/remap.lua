@@ -66,3 +66,6 @@ vim.keymap.set("i", "<C-f>", "<C-o>", { noremap = true, silent = true })
 
 vim.keymap.set("i", "<C-j>", "<C-o>j", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-k>", "<C-o>k", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<C-k>", "<C-u>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-j>", "<C-d>zz", { noremap = true, silent = true })
