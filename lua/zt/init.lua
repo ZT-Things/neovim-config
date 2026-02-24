@@ -1,6 +1,7 @@
 require("zt.remap")
 require("zt.lazy_init")
 require("zt.set")
+require("zt.note")
 
 --
 -- DO.not
