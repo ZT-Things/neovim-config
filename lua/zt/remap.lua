@@ -71,3 +71,15 @@ vim.keymap.set("i", "<C-k>", "<C-o>k", { noremap = true, silent = true })
 
 vim.keymap.set({"n", "v"}, "<C-k>", "<C-u>zz", { noremap = true, silent = true })
 vim.keymap.set({"n", "v"}, "<C-j>", "<C-d>zz", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>x", function()
+  local line = vim.api.nvim_get_current_line()
+
+  if line:find("%[ %]") then
+    line = line:gsub("%[ %]", "[x]")
+  elseif line:find("%[x%]") then
+    line = line:gsub("%[x%]", "[ ]")
+  end
+
+  vim.api.nvim_set_current_line(line)
+end)
