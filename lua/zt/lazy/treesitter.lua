@@ -16,6 +16,7 @@ return {
         "markdown",
         "markdown_inline",
         "bash",
+        "hyprlang",
       },
       auto_install = false,
     })
@@ -30,12 +31,12 @@ return {
     })
 
     -- Disable markdown TS (still buggy upstream)
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "markdown",
-      callback = function()
-        vim.treesitter.stop()
-        vim.bo.syntax = "on"
-      end,
-    })
+    -- vim.api.nvim_create_autocmd("FileType", {
+    --   pattern = "markdown",
+    --   callback = function()
+    --     vim.treesitter.stop()
+    --     vim.bo.syntax = "on"
+    --   end,
+    -- })
   end,
 }
