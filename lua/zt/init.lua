@@ -106,11 +106,3 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.o.signcolumn = 'yes'
 
 vim.api.nvim_set_hl(0, "IblIndent", { fg = "#3b3b3b", nocombine = true })
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  callback = function()
-    vim.opt_local.foldmethod = "indent"
-    vim.opt_local.foldlevel = 99
-  end,
-})
