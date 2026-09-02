@@ -83,3 +83,35 @@ vim.keymap.set("n", "<leader>x", function()
 
   vim.api.nvim_set_current_line(line)
 end)
+
+-- Molten core commands
+vim.keymap.set("n", "<leader>mi", ":MoltenInit<CR>", { desc = "Molten: Initialize kernel" })
+vim.keymap.set("n", "<leader>me", ":MoltenEvaluateOperator<CR>", { desc = "Molten: Evaluate operator" })
+vim.keymap.set("n", "<leader>ml", ":MoltenEvaluateLine<CR>", { desc = "Molten: Evaluate line" })
+vim.keymap.set("v", "<leader>mv", ":<C-u>MoltenEvaluateVisual<CR>gv", { desc = "Molten: Evaluate visual selection" })
+vim.keymap.set("n", "<leader>mo", ":MoltenShowOutput<CR>", { desc = "Molten: Show output" })
+vim.keymap.set("n", "<leader>mh", ":MoltenHideOutput<CR>", { desc = "Molten: Hide output" })
+vim.keymap.set("n", "<leader>mr", ":MoltenRestart<CR>", { desc = "Molten: Restart kernel" })
+vim.keymap.set("n", "<leader>mx", ":MoltenInterrupt<CR>", { desc = "Molten: Interrupt execution" })
+vim.keymap.set("n", "<leader>md", ":MoltenDelete<CR>", { desc = "Molten: Delete cell" })
+vim.keymap.set("n", "<leader>os", ":noautocmd MoltenEnterOutput<CR>",
+    { silent = true, desc = "show/enter output" })
+
+local function molten_evaluate_cell()
+  local cell_marker = "^# %%"
+
+  local start_line = vim.fn.search(cell_marker, "bcnW")
+  start_line = (start_line == 0) and 1 or start_line + 1
+
+  local end_line = vim.fn.search(cell_marker, "nW")
+  end_line = (end_line == 0) and vim.fn.line("$") or end_line - 1
+
+  vim.api.nvim_win_set_cursor(0, { start_line, 0 })
+
+  -- <C-u> clears the auto-inserted '<,'> range that : adds from visual mode
+  local keys = string.format("V%dG:<C-u>MoltenEvaluateVisual<CR>", end_line)
+  local termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
+  vim.api.nvim_feedkeys(termcodes, "x", false)
+end
+
+vim.keymap.set("n", "<leader>mc", molten_evaluate_cell, { desc = "Molten: Evaluate cell" })
